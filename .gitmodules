@@ -1,0 +1,3 @@
+[submodule "LS30"]
+	path = LS30
+	url = https://github.com/nickandrew/LS30.git
