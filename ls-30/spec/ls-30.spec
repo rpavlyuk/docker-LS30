@@ -5,7 +5,7 @@
 # COMPATIBILITY FIX: Jenkins job name is neccessary to make build root unique (for CentOS5 and earlier)
 %{!?JOB_NAME:%define JOB_NAME standalone}
 
-Name:           docker-ls-30
+Name:           %{_module}
 Version:        1.0
 Release:        %{svn_revision}%{?dist}
 Summary:        LS-30 toolkit
@@ -59,23 +59,29 @@ mkdir -p "$RPM_BUILD_ROOT"%{perl_vendorlib}
 cp -a LS30/lib/* "$RPM_BUILD_ROOT"%{perl_vendorlib}
 
 
-#mkdir -p $RPM_BUILD_ROOT/%{_unitdir}
-#cp -a src/*.service $RPM_BUILD_ROOT/%{_unitdir}
+mkdir -p $RPM_BUILD_ROOT/%{_unitdir}
+cp -a src/*.service $RPM_BUILD_ROOT/%{_unitdir}
 
-#mkdir -p $RPM_BUILD_ROOT/%{_sysconfdir}/sysconfig
-#cp -a src/%{_module}.conf $RPM_BUILD_ROOT/%{_sysconfdir}/sysconfig/%{_module}
+mkdir -p $RPM_BUILD_ROOT/%{_datadir}/LS30
+cp -a LS30/* $RPM_BUILD_ROOT/%{_datadir}/LS30/
+rm -rf $RPM_BUILD_ROOT/%{_datadir}/LS30/lib
 
-#mkdir -p $RPM_BUILD_ROOT/%{_bindir}
-#cp -a src/docker-ls-30 $RPM_BUILD_ROOT/%{_bindir}/docker-ls-30
+ln -s %{perl_vendorlib} $RPM_BUILD_ROOT/%{_datadir}/LS30/lib
+
+mkdir -p $RPM_BUILD_ROOT/%{_bindir}
+cp -a src/run-ls30-proxy-daemon $RPM_BUILD_ROOT/%{_bindir}/run-ls30-proxy-daemon
 
 %files
 %doc
 
 #%config(noreplace) %{_sysconfdir}/sysconfig/%{_module}
 
-#%attr(0755,root,root) %{_bindir}/docker-ls-30
+%attr(0755,root,root) %{_datadir}/LS30/bin/*
+%{_datadir}/LS30
 
-#%{_unitdir}/*.service
+%attr(0755,root,root) %{_bindir}/run-ls30-proxy-daemon
+
+%{_unitdir}/*.service
 
 %files -n perl-LS30
 %{perl_vendorlib}/*
