@@ -22,22 +22,17 @@ rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 VOLUME [ "/sys/fs/cgroup" ]
 
-# Install dependencies
-RUN yum install -y perl \
-	perl-TimeDate \
-	perl-Data-Dumper \
-	perl-AnyEvent \
-	perl-YAML \
-	perl-Mojolicious \
-	perl-Digest-MD5 \
-	perl-Digest-SHA \
-	perl-Compress-Raw-Zlib
+# Copy RPM packages to Docker image
+COPY .rpms/ /rpms/
 
-# Copy LS30 source
-COPY toolkit/LS30/ /usr/share/LS30/
+# Set what we've got
+RUN ls -al /rpms
 
-# Copy exec script
-COPY run-proxy-daemon.sh /usr/share/LS30/bin/
+# Install ls-30 and PERL library
+RUN yum localinstall -y /rpms/perl-* /rpms/ls-30*
+
+RUN systemctl enable ls-30-proxy.service
+
 
 ### Kick it off
 CMD ["/usr/sbin/init"]

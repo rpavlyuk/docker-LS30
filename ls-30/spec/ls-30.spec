@@ -18,15 +18,8 @@ Source:         %{_module}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)-%{JOB_NAME}
 BuildArch:      noarch
 
-Requires:       perl-TimeDate
-Requires:       perl-Data-Dumper
-Requires:       perl-AnyEvent
-Requires:       perl-YAML
-Requires:       perl-Mojolicious
-Requires:       perl-Digest-MD5
-Requires:       perl-Digest-SHA
-Requires:       perl-Compress-Raw-Zlib
-
+Requires:       perl-LS30
+AutoReqProv: no
 Conflicts:	docker-ls-30
 
 %description
@@ -39,6 +32,17 @@ LifeSOS LS-30 toolkit written in PERL
 
 Group:		PERL/Libraries
 Summary:	PERL library for LS-30 toolkit
+
+Requires:       perl-TimeDate
+Requires:       perl-Data-Dumper
+Requires:       perl-AnyEvent
+Requires:       perl-YAML
+Requires:       perl-Mojolicious
+Requires:       perl-Digest-MD5
+Requires:       perl-Digest-SHA
+Requires:       perl-Compress-Raw-Zlib
+
+AutoReqProv: no
 
 %description -n perl-LS30
 PERL library for LS-30 toolkit

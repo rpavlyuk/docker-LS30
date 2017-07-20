@@ -5,6 +5,13 @@ NAME="LS-30"
 CONTAINER="rpavlyuk/c7-ls30"
 EXISTS="yes"
 RUNNING="yes"
+SERVICE_CONFIG="/etc/sysconfig/docker-ls-30"
+
+if [ -f "$SERVICE_CONFIG" ];
+then
+	echo "Reading configuration from $SERVICE_CONFIG"
+	. $SERVICE_CONFIG
+fi
 
 # Determing if exists and running
 echo "Checking container $NAME status..."
@@ -36,7 +43,9 @@ fi
 # run a new container
 docker run  \
   -v /sys/fs/cgroup:/sys/fs/cgroup:ro \
+  -v /etc/sysconfig/docker-ls-30:/etc/sysconfig/ls-30 \
   -p 3000:3000 \
   -p 1681:1681 \
+  -e "LS30_SERVER=127.0.0.1:1861" \
   --name $NAME \
   $CONTAINER
