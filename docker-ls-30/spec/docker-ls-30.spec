@@ -8,7 +8,7 @@
 Name:           docker-ls-30
 Version:        1.0
 Release:        %{svn_revision}%{?dist}
-Summary:        Docker container wrapper for AirVideoServer HD
+Summary:        Docker container wrapper for LS-30 toolkit
 
 Group:          Multimedia/Servers
 License:        Other/Proprietary
