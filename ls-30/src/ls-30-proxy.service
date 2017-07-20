@@ -1,0 +1,13 @@
+[Unit]
+Description=LS-30 Proxy Daemon
+After=syslog.target
+After=network.target
+
+[Service]
+User=lifesos
+Type=simple
+#Type=forking
+ExecStart=/usr/bin/run-ls30-proxy-daemon
+
+[Install]
+WantedBy=multi-user.target
