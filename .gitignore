@@ -7,6 +7,7 @@
 *.pm.tdy
 *.bs
 .repo
+.rpms
 
 # Devel::Cover
 cover_db/
