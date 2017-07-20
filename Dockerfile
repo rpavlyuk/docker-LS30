@@ -34,7 +34,7 @@ RUN yum install -y perl \
 	perl-Compress-Raw-Zlib
 
 # Copy LS30 source
-COPY LS30/ /usr/share/LS30/
+COPY toolkit/LS30/ /usr/share/LS30/
 
 # Copy exec script
 COPY run-proxy-daemon.sh /usr/share/LS30/bin/
