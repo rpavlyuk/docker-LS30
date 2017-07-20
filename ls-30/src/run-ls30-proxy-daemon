@@ -15,4 +15,4 @@ then
 	LS30_REMOTE_SERVER=127.0.0.1:1681
 fi
 
-$LS30_HOME/bin/alarm-daemon.pl -h $LS30_REMOTE_SERVER 0.0.0.0:1681
+$LS30_HOME/bin/alarm-daemon.pl -h $LS30_REMOTE_SERVER 127.0.0.1:1681
