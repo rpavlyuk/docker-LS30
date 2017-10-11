@@ -6,6 +6,7 @@ if [ -z "$1" ];
 then
 	echo "ERROR: Parameter #1 missing: remote host:port"
 	exit 1
+fi
 
 LS30_REMOTE_SERVER=$1
 
