@@ -33,6 +33,8 @@ RUN yum localinstall -y /rpms/perl-* /rpms/ls-30*
 
 RUN systemctl enable ls-30-proxy.service
 
+## Expose ports
+EXPOSE 3000 1681
 
 ### Kick it off
 CMD ["/usr/sbin/init"]
