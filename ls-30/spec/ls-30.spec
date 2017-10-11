@@ -74,6 +74,7 @@ ln -s %{perl_vendorlib} $RPM_BUILD_ROOT/%{_datadir}/LS30/lib
 
 mkdir -p $RPM_BUILD_ROOT/%{_bindir}
 cp -a src/run-ls30-proxy-daemon $RPM_BUILD_ROOT/%{_bindir}/run-ls30-proxy-daemon
+cp -a src/ls-30-set-remote $RPM_BUILD_ROOT/%{_bindir}/ls-30-set-remote
 
 %files
 %doc
@@ -84,6 +85,7 @@ cp -a src/run-ls30-proxy-daemon $RPM_BUILD_ROOT/%{_bindir}/run-ls30-proxy-daemon
 %{_datadir}/LS30
 
 %attr(0755,root,root) %{_bindir}/run-ls30-proxy-daemon
+%attr(0755,root,root) %{_bindir}/ls-30-set-remote
 
 %{_unitdir}/*.service
 

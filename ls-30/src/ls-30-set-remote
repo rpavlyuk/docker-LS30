@@ -1,0 +1,20 @@
+#!/bin/bash
+
+LS30_SERVICE_CONFIG=/etc/sysconfig/ls-30
+
+if [ -z "$1" ];
+then
+	echo "ERROR: Parameter #1 missing: remote host:port"
+	exit 1
+
+LS30_REMOTE_SERVER=$1
+
+echo "# remove LS-30 Ehternet module" > $LS30_SERVICE_CONFIG
+echo "LS30_REMOTE_SERVER=$LS30_REMOTE_SERVER" >> $LS30_SERVICE_CONFIG
+echo "# using proxy as ls30 server" >> $LS30_SERVICE_CONFIG
+echo "LS30_SERVER=127.0.0.1:1681" >> $LS30_SERVICE_CONFIG
+
+export LS30_REMOTE_SERVER=$LS30_REMOTE_SERVER
+export LS30_SERVER=127.0.0.1:1681
+
+systemctl restart ls-30-proxy.service
