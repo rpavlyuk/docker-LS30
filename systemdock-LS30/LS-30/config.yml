@@ -11,3 +11,6 @@ working_dir: /root
 command:
         host:
                 post: docker exec LS-30 /usr/bin/ls-30-set-remote 192.168.1.220:1681
+environment:
+        LS30_SERVER: '127.0.0.1:1681'
+network_mode: bridge
