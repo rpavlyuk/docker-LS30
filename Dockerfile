@@ -33,6 +33,10 @@ RUN yum localinstall -y /rpms/perl-* /rpms/ls-30*
 
 RUN systemctl enable ls-30-proxy.service
 
+# Installing CLAM
+RUN yum install -y python2-pip autoconf gcc cpp python-devel
+RUN pip install clam
+
 ## Expose ports
 EXPOSE 3000 1681
 
