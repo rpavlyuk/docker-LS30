@@ -38,7 +38,7 @@ RUN yum install -y python2-pip autoconf gcc cpp python-devel
 RUN pip install clam
 
 ## Expose ports
-EXPOSE 3000 1681
+EXPOSE 3000 1681 8888
 
 ### Kick it off
 CMD ["/usr/sbin/init"]
