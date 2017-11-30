@@ -4,7 +4,7 @@ MAINTAINER "Roman Pavlyuk" <roman.pavlyuk@gmail.com>
 ENV container docker
 
 RUN yum install -y epel-release
-RUN yum install -y https://harbottle.gitlab.io/epmel/7/x86_64/epmel-release-7-2.el7.x86_64.rpm
+RUN yum install -y https://harbottle.gitlab.io/epmel/7/x86_64/epmel-release-7-3.el7.x86_64.rpm
 
 RUN yum update -y
 
