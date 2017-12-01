@@ -37,6 +37,8 @@ RUN systemctl enable ls-30-proxy.service
 RUN yum install -y python2-pip autoconf gcc cpp python-devel
 RUN pip install clam
 
+VOLUME [ "/usr/share/LS30/clam" ]
+
 ## Expose ports
 EXPOSE 3000 1681 8888
 

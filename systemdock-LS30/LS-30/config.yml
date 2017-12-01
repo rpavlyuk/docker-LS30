@@ -5,7 +5,10 @@ ports:
         3000/tcp: 3000
         1681/tcp: 1681
         8888/tcp: 8888
-volumes: {}
+volumes:
+        /usr/share/LS30/clam:
+                bind: /usr/share/LS30/clam
+                mode: rw
 privileged: false
 tty: false
 working_dir: /root
