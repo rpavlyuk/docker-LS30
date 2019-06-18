@@ -4,11 +4,12 @@ MAINTAINER "Roman Pavlyuk" <roman.pavlyuk@gmail.com>
 ENV container docker
 
 RUN yum install -y epel-release
-RUN yum install -y https://harbottle.gitlab.io/epmel/7/x86_64/epmel-release-7-3.el7.x86_64.rpm
+#RUN yum install -y https://harbottle.gitlab.io/epmel/7/x86_64/epmel-release-7-3.el7.x86_64.rpm
+RUN yum install -y https://harbottle.gitlab.io/epmel/7/x86_64/epmel-release-7-3.el7.harbottle.x86_64.rpm
 
 RUN yum update -y
 
-RUN yum install -y less file mc vim-enhanced telnet net-tools 
+RUN yum install -y less file mc vim-enhanced telnet net-tools wget
 
 ### Let's enable systemd on the container
 RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
@@ -39,8 +40,14 @@ RUN pip install clam
 
 VOLUME [ "/usr/share/LS30/clam" ]
 
+# Enable SSHD on port 2222
+RUN yum install -y openssh openssh-server
+RUN systemctl enable sshd
+RUN perl -pi -e "s|\#Port 22|Port 2222|gi" /etc/ssh/sshd_config
+RUN perl -pi -e "s|\#PermitRootLogin yes|PermitRootLogin yes|gi" /etc/ssh/sshd_config
+
 ## Expose ports
-EXPOSE 3000 1681 8888
+EXPOSE 3000 1681 8888 2222
 
 ### Kick it off
 CMD ["/usr/sbin/init"]
