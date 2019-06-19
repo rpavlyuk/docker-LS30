@@ -49,5 +49,11 @@ RUN perl -pi -e "s|\#PermitRootLogin yes|PermitRootLogin yes|gi" /etc/ssh/sshd_c
 ## Expose ports
 EXPOSE 3000 1681 8888 2222
 
+### Enable monit
+RUN yum install -y monit
+RUN systemctl enable monit
+EXPOSE 2812
+
+
 ### Kick it off
 CMD ["/usr/sbin/init"]

@@ -6,6 +6,7 @@ ports:
         1681/tcp: 1681
         8888/tcp: 8888
         2222/tcp: 2222
+        2812/tcp: 2812
 volumes:
         /usr/share/LS30/clam:
                 bind: /usr/share/LS30/clam
