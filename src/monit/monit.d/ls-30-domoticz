@@ -1,16 +1,23 @@
 
 
-CHECK PROGRAM is-ls30-away PATH /usr/local/bin/is-ls30-away TIMEOUT 10 SECONDS
-	if status == 0 then exec "/usr/bin/curl http://192.168.1.5:8080/json.htm?type=command&param=switchlight&idx=14&switchcmd=Set%20Level&level=20" repeat every 1 cycle
+#CHECK PROGRAM is-ls30-away PATH /usr/local/bin/is-ls30-away TIMEOUT 10 SECONDS
+#	if status == 0 then exec "/usr/bin/curl http://192.168.1.5:8080/json.htm?type=command&param=switchlight&idx=14&switchcmd=Set%20Level&level=20" repeat every 1 cycle
 
 
-CHECK PROGRAM is-ls30-disarm PATH /usr/local/bin/is-ls30-disarm TIMEOUT 10 SECONDS
-        if status == 0 then exec "/usr/bin/curl http://192.168.1.5:8080/json.htm?type=command&param=switchlight&idx=14&switchcmd=Set%20Level&level=10" repeat every 1 cycle
+#CHECK PROGRAM is-ls30-disarm PATH /usr/local/bin/is-ls30-disarm TIMEOUT 10 SECONDS
+#        if status == 0 then exec "/usr/bin/curl http://192.168.1.5:8080/json.htm?type=command&param=switchlight&idx=14&switchcmd=Set%20Level&level=10" repeat every 1 cycle
 
 
-CHECK PROGRAM is-ls30-home PATH /usr/local/bin/is-ls30-home TIMEOUT 10 SECONDS
-        if status == 0 then exec "/usr/bin/curl http://192.168.1.5:8080/json.htm?type=command&param=switchlight&idx=14&switchcmd=Set%20Level&level=30" repeat every 1 cycle
+#CHECK PROGRAM is-ls30-home PATH /usr/local/bin/is-ls30-home TIMEOUT 10 SECONDS
+#        if status == 0 then exec "/usr/bin/curl http://192.168.1.5:8080/json.htm?type=command&param=switchlight&idx=14&switchcmd=Set%20Level&level=30" repeat every 1 cycle
 
 
-CHECK PROGRAM is-ls30-monitor PATH /usr/local/bin/is-ls30-monitor TIMEOUT 10 SECONDS
-        if status == 0 then exec "/usr/bin/curl http://192.168.1.5:8080/json.htm?type=command&param=switchlight&idx=14&switchcmd=Set%20Level&level=40" repeat every 1 cycle
+#CHECK PROGRAM is-ls30-monitor PATH /usr/local/bin/is-ls30-monitor TIMEOUT 10 SECONDS
+#        if status == 0 then exec "/usr/bin/curl http://192.168.1.5:8080/json.htm?type=command&param=switchlight&idx=14&switchcmd=Set%20Level&level=40" repeat every 1 cycle
+
+CHECK PROGRAM check-ls30-status PATH /usr/local/bin/check-ls30-status TIMEOUT 10 SECONDS
+	if status == 10 then exec "/usr/bin/curl http://192.168.1.5:8080/json.htm?type=command&param=udevice&idx=14&nvalue=10&svalue=10" repeat every 1 cycle
+	if status == 20 then exec "/usr/bin/curl http://192.168.1.5:8080/json.htm?type=command&param=udevice&idx=14&nvalue=20&svalue=20" repeat every 1 cycle
+	if status == 30 then exec "/usr/bin/curl http://192.168.1.5:8080/json.htm?type=command&param=udevice&idx=14&nvalue=30&svalue=30" repeat every 1 cycle
+	if status == 40 then exec "/usr/bin/curl http://192.168.1.5:8080/json.htm?type=command&param=udevice&idx=14&nvalue=40&svalue=40" repeat every 1 cycle
+	if status ==  1 then alert

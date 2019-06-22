@@ -1,0 +1,29 @@
+#!/bin/bash
+
+. /usr/local/bin/ls30-env
+
+RESULT="`/usr/share/LS30/bin/get-mode.pl`"
+
+echo "Got LS-30 response: $RESULT"
+
+if [ "$RESULT" = "Disarm" ];
+then
+  exit 10
+fi
+
+if [ "$RESULT" = "Away" ];
+then
+  exit 20
+fi
+
+if [ "$RESULT" = "Home" ];
+then
+  exit 30
+fi
+
+if [ "$RESULT" = "Monitor" ];
+then
+  exit 40
+fi
+
+exit 1
