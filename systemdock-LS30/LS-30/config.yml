@@ -16,7 +16,7 @@ tty: false
 working_dir: /root
 command:
         host:
-                post: docker exec LS-30 /usr/bin/ls-30-set-remote 192.168.1.220:1681 && docker exec LS-30 /usr/bin/ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa  -q -N "" && docker cp /root/.ssh/authorized_keys LS-30:/root/.ssh/
+                post: docker exec LS-30 /usr/bin/ls-30-set-remote 192.168.1.220:1681 && docker exec LS-30 rm -rf /root/.ssh && docker exec LS-30  mkdir -p /root/.ssh && docker exec LS-30 /usr/bin/ssh-keygen -b 2048 -t rsa -f /root/.ssh/id_rsa  -q -N "" && docker cp /root/.ssh/authorized_keys LS-30:/root/.ssh/
 environment:
         LS30_SERVER: '127.0.0.1:1681'
 network_mode: bridge
