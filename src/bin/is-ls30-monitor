@@ -1,0 +1,14 @@
+#!/bin/bash
+
+. /usr/local/bin/ls30-env
+
+RESULT="`/usr/share/LS30/bin/get-mode.pl`"
+
+echo "Got LS-30 response: $RESULT"
+
+if [ "$RESULT" = "Monitor" ];
+then
+  exit 0
+else
+  exit 1
+fi

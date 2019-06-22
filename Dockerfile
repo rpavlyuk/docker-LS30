@@ -54,6 +54,10 @@ RUN yum install -y monit
 RUN systemctl enable monit
 EXPOSE 2812
 
+# Install monit configuration
+ADD src/monit/monit.d /etc/monit.d
+ADD src/monit/monitrc /etc/
+COPY src/bin/* /usr/local/bin/
 
 ### Kick it off
 CMD ["/usr/sbin/init"]
