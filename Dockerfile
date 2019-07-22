@@ -35,9 +35,6 @@ RUN systemctl enable sshd
 RUN perl -pi -e "s|\#Port 22|Port 2222|gi" /etc/ssh/sshd_config
 RUN perl -pi -e "s|\#PermitRootLogin yes|PermitRootLogin yes|gi" /etc/ssh/sshd_config
 
-## Expose ports
-EXPOSE 3000 1681 8999 2222
-
 ### Enable monit
 RUN yum install -y monit
 RUN systemctl enable monit
@@ -49,6 +46,12 @@ ADD src/monit/monitrc /etc/
 COPY src/bin/* /usr/local/bin/
 RUN chmod 0600 /etc/monitrc
 
+# Install Zabbix Agent
+RUN rpm -ivh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0-1.el7.noarch.rpm
+RUN yum install -y zabbix-agent
+RUN systemctl enable zabbix-agent
+COPY src/zabbix/settings-LS30.conf /etc/zabbix/zabbix_agentd.d/settings-LS30.conf
+
 ### Keep dynamic files at the end
 # Copy RPM packages to Docker image
 COPY .rpms/ /rpms/
@@ -58,8 +61,10 @@ RUN ls -al /rpms
 
 # Install ls-30 and PERL library
 RUN yum localinstall -y /rpms/perl-* /rpms/ls-30*
-
 RUN systemctl enable ls-30-proxy.service
+
+## Expose ports
+EXPOSE 3000 1681 8999 2222 15050
 
 ### Kick it off
 CMD ["/usr/sbin/init"]

@@ -99,3 +99,7 @@ getent passwd %{pkg_user} >/dev/null || \
     -c "LS-30 control account" %{pkg_user}
 exit 0
 
+
+%changelog
+* Mon Jul 22 2019 Roman Pavlyuk <roman@pavlyuk.lviv.ua> - 1.0
+- Initial version

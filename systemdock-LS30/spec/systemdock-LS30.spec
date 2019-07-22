@@ -47,4 +47,5 @@ ln -s %{_sysconfdir}/systemdock/containers.d/LS-30/%{_module}.service $RPM_BUILD
 %{_unitdir}/%{_module}.service
 
 %changelog
-
+* Mon Jul 22 2019 Roman Pavlyuk <roman@pavlyuk.lviv.ua> - 0.1
+- Initial version
