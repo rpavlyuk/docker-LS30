@@ -23,17 +23,6 @@ rm -f /lib/systemd/system/basic.target.wants/*;\
 rm -f /lib/systemd/system/anaconda.target.wants/*;
 VOLUME [ "/sys/fs/cgroup" ]
 
-# Copy RPM packages to Docker image
-COPY .rpms/ /rpms/
-
-# Set what we've got
-RUN ls -al /rpms
-
-# Install ls-30 and PERL library
-RUN yum localinstall -y /rpms/perl-* /rpms/ls-30*
-
-RUN systemctl enable ls-30-proxy.service
-
 # Installing CLAM
 RUN yum install -y python2-pip autoconf gcc cpp python-devel
 RUN pip install clam
@@ -47,7 +36,7 @@ RUN perl -pi -e "s|\#Port 22|Port 2222|gi" /etc/ssh/sshd_config
 RUN perl -pi -e "s|\#PermitRootLogin yes|PermitRootLogin yes|gi" /etc/ssh/sshd_config
 
 ## Expose ports
-EXPOSE 3000 1681 8888 2222
+EXPOSE 3000 1681 8999 2222
 
 ### Enable monit
 RUN yum install -y monit
@@ -58,6 +47,19 @@ EXPOSE 2812
 ADD src/monit/monit.d /etc/monit.d
 ADD src/monit/monitrc /etc/
 COPY src/bin/* /usr/local/bin/
+RUN chmod 0600 /etc/monitrc
+
+### Keep dynamic files at the end
+# Copy RPM packages to Docker image
+COPY .rpms/ /rpms/
+
+# Set what we've got
+RUN ls -al /rpms
+
+# Install ls-30 and PERL library
+RUN yum localinstall -y /rpms/perl-* /rpms/ls-30*
+
+RUN systemctl enable ls-30-proxy.service
 
 ### Kick it off
 CMD ["/usr/sbin/init"]

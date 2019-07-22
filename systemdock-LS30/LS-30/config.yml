@@ -4,7 +4,7 @@ name: LS-30
 ports:
         3000/tcp: 3000
         1681/tcp: 1681
-        8888/tcp: 8888
+        8999/tcp: 8999
         2222/tcp: 2222
         2812/tcp: 2812
 volumes:
