@@ -51,6 +51,7 @@ RUN rpm -ivh https://repo.zabbix.com/zabbix/4.0/rhel/7/x86_64/zabbix-release-4.0
 RUN yum install -y zabbix-agent
 RUN systemctl enable zabbix-agent
 COPY src/zabbix/settings-LS30.conf /etc/zabbix/zabbix_agentd.d/settings-LS30.conf
+COPY src/zabbix/params-LS30.conf /etc/zabbix/zabbix_agentd.d/params-LS30.conf
 
 ### Keep dynamic files at the end
 # Copy RPM packages to Docker image
