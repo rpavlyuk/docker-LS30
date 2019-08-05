@@ -53,6 +53,9 @@ RUN systemctl enable zabbix-agent
 COPY src/zabbix/settings-LS30.conf /etc/zabbix/zabbix_agentd.d/settings-LS30.conf
 COPY src/zabbix/params-LS30.conf /etc/zabbix/zabbix_agentd.d/params-LS30.conf
 
+# Install psmisc to kill all processes when needed
+RUN yum install -y psmisc
+
 ### Keep dynamic files at the end
 # Copy RPM packages to Docker image
 COPY .rpms/ /rpms/
