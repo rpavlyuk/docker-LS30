@@ -56,6 +56,10 @@ COPY src/zabbix/params-LS30.conf /etc/zabbix/zabbix_agentd.d/params-LS30.conf
 # Install psmisc to kill all processes when needed
 RUN yum install -y psmisc
 
+# Install zabbix sudoers
+RUN yum install -y sudo
+COPY src/sudoers.d/zabbix /etc/sudoers.d/zabbix
+
 ### Keep dynamic files at the end
 # Copy RPM packages to Docker image
 COPY .rpms/ /rpms/

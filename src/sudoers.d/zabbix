@@ -1,0 +1,8 @@
+Defaults:zabbix !syslog
+#Defaults:zabbix syslog_goodpri = "err"
+Defaults:zabbix !syslog_goodpri
+Defaults:zabbix !requiretty
+
+Cmnd_Alias ZABBIX_CMD = /sbin/fuser, /usr/sbin/lsof, /usr/sbin/dmidecode, /sbin/mii-tool, /sbin/ethtool, /usr/bin/ipmitool, /usr/sbin/iptstate, /usr/bin/ocaudit, /usr/sbin/smartctl, /usr/bin/kill, /usr/bin/killall
+zabbix   ALL = (other_user)  NOPASSWD: ALL
+zabbix   ALL = (root)        NOPASSWD: ZABBIX_CMD
