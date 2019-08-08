@@ -12,6 +12,9 @@ The container provides command-line as well as some API-like programmable interf
 
 ## Running the Container
 It is recommended to run the container using ```systemdock``` as there are several pre- and post-configuration steps to be done and ```systemdock``` will take care of them. Also, main feature of ```systemdock``` is that it runs the container as SystemD service, thus allowing the container to be correctly started in system boot. 
+
+There's no need to build the container as it is already available in the repository: https://cloud.docker.com/u/rpavlyuk/repository/docker/rpavlyuk/c7-ls30. However, you'll need to rebuild it if you'd like to benefit from Zabbix and Domoticz integration.
+
 * First, install ```systemdock```. See instruction here: https://github.com/rpavlyuk/systemdock
 * Download the actual source:
 ```
